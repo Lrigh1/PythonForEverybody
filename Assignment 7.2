@@ -1,0 +1,23 @@
+try:
+    fname = raw_input("Enter file name: ")
+except:
+    print("That is not a file name")
+    exit()
+    
+fh = open(fname)
+
+count = 0
+avg = 0
+############################################################### for loop getting the average of all the floating numbers in the file
+for line in fh:
+    if not line.startswith("X-DSPAM-Confidence:"):continue
+        
+    else:
+        text = line.find("0")
+        ftext = line[text:]
+        count = count + float(ftext)
+        avg = avg + 1
+        
+    final_avg = count / avg
+###############################################################     
+print "Average spam confidence:", final_avg
