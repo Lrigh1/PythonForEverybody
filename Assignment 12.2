@@ -1,0 +1,23 @@
+#Opens a webpage and adds up all the numbers under 'span' in the html
+
+
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+url = 'http://python-data.dr-chuck.net/comments_194022.html'
+html = urlopen(url).read()
+soup = BeautifulSoup(html)
+
+# Retrieve all of the anchor tags
+tags = soup('span')
+add = 0
+count = 0
+for tag in tags:
+    # Look at the parts of a tag
+    new = int(tag.contents[0])
+    count += 1
+    add += new
+    #print (tag.get(new,None)
+
+print (count)
+print (add)
