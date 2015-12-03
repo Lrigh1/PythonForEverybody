@@ -1,0 +1,32 @@
+#Demon assignment from hell.
+#Trying to convert this from python 2 was difficult for me.
+#Didn't understand why I had to open and read it twice?  thought variables overid themselves.
+
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+url = 'https://pr4e.dr-chuck.com/tsugi/mod/python-data/data/known_by_Aoife.html'
+html = urlopen(url).read()
+soup = BeautifulSoup(html)
+# Retrieve all of the anchor tags
+tags = soup('a')
+
+taglist= []
+
+for tag in tags:
+        newtag = tag.get('href')
+        taglist.append(newtag)
+
+print(taglist[17])
+for i in range(6):
+    url = taglist[17]
+    html = urlopen(url).read()
+    soup = BeautifulSoup(html)
+# Retrieve all of the anchor tags
+    tags = soup('a')
+    taglist= []
+
+    for tag in tags:
+        newtag = tag.get('href')
+        taglist.append(newtag)
+    print(taglist[17])
