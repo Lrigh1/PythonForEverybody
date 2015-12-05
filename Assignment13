@@ -1,0 +1,18 @@
+### opens an xml document and gets a specific section out!  Did this much faster than the last, albeit with help.
+
+from urllib.request import urlopen
+import xml.etree.ElementTree as ET
+
+url = 'http://python-data.dr-chuck.net/comments_194019.xml'
+
+print ('Retrieving', url)
+data = urlopen(url).read()
+
+tree = ET.fromstring(data)
+results = tree.findall('comments/comment')
+
+sum = 0
+for item in results:
+     sum += int(item.find('count').text)
+
+print(sum)
