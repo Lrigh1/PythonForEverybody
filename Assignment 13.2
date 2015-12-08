@@ -1,0 +1,22 @@
+### First foray into JSON!  This assignment reads info from a website, find the specific dictionary/list and adds the number of and numbers
+#### Had to find out about .decode utf8, was not in python2 assignment.
+### more struggles converting python 2 to 3!
+### Getting better!
+
+from urllib.request import urlopen
+import json
+
+url = "http://python-data.dr-chuck.net/comments_194023.json"
+data = urlopen(url).read().decode('utf8')
+
+js = json.loads(str(data))
+
+count = 0
+sum = 0
+for i in js['comments']:
+    counts = js['comments'][count]['count']
+    sum += int(counts)
+    count += 1
+
+print ("Counts!:", count)
+print ("Sum!:", sum)
