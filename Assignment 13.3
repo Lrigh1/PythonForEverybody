@@ -1,0 +1,26 @@
+### Assignment was to use a url to look up a specific location and get it's place id!
+### edited after completion to use googles API.  Cool!  I feel awesome :D
+### First real foray into real world data
+
+from urllib.request import urlopen
+from urllib.parse import urlencode
+import urllib
+import json
+
+serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?'
+
+while True:
+    address = input('Enter location: ')
+    if len(address) < 1 : break
+
+    url = serviceurl + urllib.parse.urlencode({'sensor':'false', 'address': address})
+    data = urlopen(url).read().decode('utf8')
+
+    print ('Retrieved',len(data),'characters')
+
+    try: js = json.loads(str(data))
+    except: js = None
+
+    print (json.dumps(js, indent=4))
+    plcid = js["results"][0]['place_id']
+    print(plcid)
